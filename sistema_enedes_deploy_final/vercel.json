@@ -1,36 +1,21 @@
 {
   "functions": {
-    "api/**/*.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.6.0"
     }
   },
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/(.*\\.php)",
       "dest": "/api/$1"
     },
     {
-      "src": "/login.html",
-      "dest": "/login.html"
-    },
-    {
-      "src": "/dashboard.html",
-      "dest": "/dashboard.html"
-    },
-    {
       "src": "/",
-      "dest": "/login.html"
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/login.html"
-    }
   ]
 }
-
