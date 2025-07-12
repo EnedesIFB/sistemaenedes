@@ -5,10 +5,10 @@
 // ================================================
 
 // Configurações de conexão com PostgreSQL (Neon)
-$host = 'ep-white-thunder-a5ixkfxe.us-east-2.aws.neon.tech';
+$host = 'ep-royal-dust-aekknepj-pooler.c-2.us-east-2.aws.neon.tech';
 $dbname = 'neondb';
 $username = 'neondb_owner';
-$password = 'npg_QOQqhGPNJKqOdGGQhCOQJKqOdGGQhCOQ'; // Substitua pela sua senha real do Neon
+$password = 'npg_7ME3tXIfwone'; // Substitua pela sua senha real do Neon
 $port = '5432';
 
 // Configurações adicionais
@@ -72,7 +72,7 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 
 // Tratar requisições OPTIONS (preflight)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
+    http_response_code(200 );
     exit;
 }
 
@@ -124,4 +124,3 @@ function getCurrentUser() {
 }
 
 ?>
-
