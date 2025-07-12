@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema ENEDES - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 50%, #1976D2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo svg {
+            height: 60px;
+            width: auto;
+        }
+
+        h1 {
+            color: #2E7D32;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .alert-success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4CAF50;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <svg viewBox="0 0 640 160">
+                <defs>
+                    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#4CAF50" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#2E7D32" stop-opacity="1" />
+                    </linearGradient>
+                    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#FF9800" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#F57C00" stop-opacity="1" />
+                    </linearGradient>
+                </defs>
+                
+                <rect x="20" y="25" width="60" height="90" rx="12" fill="url(#greenGradient)"/>
+                <rect x="28" y="40" width="35" height="12" fill="white"/>
+                <rect x="28" y="60" width="28" height="12" fill="white"/>
+                <rect x="28" y="80" width="35" height="12" fill="white"/>
+                <rect x="50" y="52" width="22" height="16" fill="url(#orangeGradient)"/>
+                
+                <text x="95" y="75" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#4A6FA5">enedes</text>
+                
+                <rect x="95" y="85" width="220" height="2" fill="#FF9800"/>
+                
+                <text x="95" y="105" font-family="Arial, sans-serif" font-size="12" fill="#4A6FA5">Escola de Negócios e Desenvolvimento Social</text>
+                <text x="95" y="120" font-family="Arial, sans-serif" font-size="12" fill="#4A6FA5">do Instituto Federal de Brasília</text>
+            </svg>
+        </div>
+
+        <h1>Sistema ENEDES</h1>
+        <p class="subtitle">Gestão Completa de Projetos</p>
+
+        <div id="alert" class="alert" style="display: none;"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <select id="username" name="username" required>
+                    <option value="">Selecione um usuário...</option>
+                    <option value="coord_geral">👑 Coordenador Geral</option>
+                    <option value="coord_projeto">🎯 Coordenador de Projeto</option>
+                    <option value="coord_metas">👤 Flavia Furtado (Metas ENEDES)</option>
+                    <option value="coord_lab_consumer">👤 Coordenador Lab Consumer</option>
+                    <option value="coord_rota">👤 Coordenador Rota Empreendedora</option>
+                    <option value="coord_ifb_mais">👤 Mariana Rego (IFB Mais Empreendedor)</option>
+                    <option value="coord_estudio">👤 Coordenador do Estúdio</option>
+                    <option value="coord_lab_varejo">👤 Coordenador Lab Varejo</option>
+                    <option value="coord_sala">👤 CARLA E TSI (Sala Interativa)</option>
+                    <option value="coord_marketing">👤 Marketing Team</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" value="123456" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="loginBtn">
+                Entrar no Sistema
+            </button>
+
+            <button type="button" class="btn btn-secondary" onclick="loginDirect()">
+                🚀 Login Direto (Demo)
+            </button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Autenticando...</p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 ENEDES - Instituto Federal de Brasília</p>
+            <p>Todos os direitos reservados</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuração da API
+        const API_BASE = '/api';
+
+        // Elementos do DOM
+        const loginForm = document.getElementById('loginForm');
+        const alertDiv = document.getElementById('alert');
+        const loadingDiv = document.getElementById('loading');
+        const loginBtn = document.getElementById('loginBtn');
+
+        // Função para mostrar alertas
+        function showAlert(message, type = 'error') {
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            alertDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Função para mostrar/esconder loading
+        function toggleLoading(show) {
+            loadingDiv.style.display = show ? 'block' : 'none';
+            loginBtn.disabled = show;
+            loginForm.style.display = show ? 'none' : 'block';
+        }
+
+        // Função de login direto (demo)
+        function loginDirect() {
+            document.getElementById('username').value = 'coord_geral';
+            document.getElementById('password').value = '123456';
+            handleLogin();
+        }
+
+        // Função principal de login
+        async function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showAlert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            toggleLoading(true);
+
+            try {
+                const response = await fetch(`${API_BASE}/auth.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'login',
+                        username: username,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Login realizado com sucesso! Redirecionando...', 'success');
+                    
+                    // Salvar dados do usuário no localStorage
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Redirecionar para o dashboard
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                } else {
+                    showAlert(data.message || 'Erro ao fazer login. Verifique suas credenciais.');
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                showAlert('Erro de conexão. Tente novamente.');
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // Event listener para o formulário
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin();
+        });
+
+        // Verificar se já está logado
+        window.addEventListener('load', function() {
+            const user = localStorage.getItem('user');
+            if (user) {
+                // Já está logado, redirecionar
+                window.location.href = '/dashboard.html';
+            }
+        });
+
+        // Permitir login com Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleLogin();
+            }
+        });
+    </script>
+</body>
+</html>
+
